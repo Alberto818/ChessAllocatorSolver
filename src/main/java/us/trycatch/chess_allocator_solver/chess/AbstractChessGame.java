@@ -6,10 +6,11 @@
 
 package us.trycatch.chess_allocator_solver.chess;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 import us.trycatch.chess_allocator_solver.chess.marker.CellMarkFactory;
 import us.trycatch.chess_allocator_solver.chess.marker.Marker;
-
+import static us.trycatch.chess_allocator_solver.chess.ChessConstants.*;
 /**
  *
  * @author albertodelso
@@ -20,6 +21,8 @@ public class AbstractChessGame {
     private int columns = 0;
     private Cell[] currentBoard = null;
     private int internalHashCode = 0;
+    
+   
     
     public Cell[] getCurrentBoard() {
         return currentBoard;
@@ -39,6 +42,10 @@ public class AbstractChessGame {
         return out;
     }
     
+    public Cell[] getBoard(){
+        Cell[] out = this.currentBoard;
+        return out;
+    }
     @Override
     public boolean equals(Object obj){
         
@@ -47,28 +54,50 @@ public class AbstractChessGame {
         if (obj instanceof AbstractChessGame){
             AbstractChessGame acg = (AbstractChessGame) obj;
             
-            out = this.hashCode() == acg.hashCode();
+            if(this.currentBoard.length == acg.getBoard().length){
+                
+                if (currentBoard.length <= CELL_NUMBER_TO_CALCULATE_HASHCODE){
+                    out = this.hashCode() == acg.hashCode();
+                }else{
+                    out = true;
+                    
+                    for(int i= CELL_NUMBER_TO_CALCULATE_HASHCODE +1; out && (i < currentBoard.length);i++){
+                        Cell thisCell = this.currentBoard[i];
+                        Cell otherCell = acg.getBoard()[i];
+                        
+                        if (thisCell instanceof PieceCell){
+                            if (otherCell instanceof PieceCell){
+                                PieceCell thisPieceCell = (PieceCell) thisCell;
+                                PieceCell otherPieceCell = (PieceCell) otherCell;
+                                
+                                out = thisPieceCell.getPiece() == otherPieceCell.getPiece();
+                            }else{
+                                out = false;
+                            }
+                        }else{
+                            if (otherCell instanceof PieceCell){
+                                out = false;
+                            }
+                        }
+                    }
+                }
+            }
+            
         
         }
         
         return out;
     }
     private int calculateInternalHashCode(Cell[] currentBoard){
-        int out = 0;
-        Cell actualCell;
-        int base = Piece.values().length;
         
-        for(int i=0; i < currentBoard.length;i++){
-            actualCell = currentBoard[i];
-            
-            if (actualCell instanceof PieceCell){
-                PieceCell pieceCell = (PieceCell) actualCell;
-                Piece piece = pieceCell.getPiece();
-                
-                //Calculate the new hashcode.
-                out += piece.ordinal() + Math.pow(base, i);
-            }
-        }
+        int maxLength = (currentBoard.length <= CELL_NUMBER_TO_CALCULATE_HASHCODE) 
+                      ?  currentBoard.length
+                      :  CELL_NUMBER_TO_CALCULATE_HASHCODE;
+        
+        Cell[] limitedCurrentBoard = Arrays.copyOfRange(currentBoard, 0, maxLength);
+        BigInteger biHashcode = ChessTools.calculateRepresentationNumber(limitedCurrentBoard);
+        
+        int out = biHashcode.intValue();
         
         return out;
     }
