@@ -15,9 +15,11 @@ import us.trycatch.chess_allocator_solver.chess.Piece;
  */
 public class CellMarkFactory {
 
-    private static Hashtable<Piece,Marker[]> pieceMarksConfiguration;
+    private static CellMarkFactory singlenton = null;
+    private Hashtable<Piece,Marker[]> pieceMarksConfiguration;
     
-    static{
+    private CellMarkFactory(){
+     
      pieceMarksConfiguration = new Hashtable<>();
      
      //Rook configuration.
@@ -28,7 +30,16 @@ public class CellMarkFactory {
      
      pieceMarksConfiguration.put(Piece.ROOK, rookMarkers);
     }
-    public static Marker[] getMarks(Piece piece){
+    
+    public static CellMarkFactory getInstance(){
+        
+        if (singlenton == null){
+            singlenton = new CellMarkFactory();
+        }
+        
+        return singlenton;
+    }
+    public Marker[] getMarks(Piece piece){
         
         Marker[] out = pieceMarksConfiguration.get(piece);
         return out;

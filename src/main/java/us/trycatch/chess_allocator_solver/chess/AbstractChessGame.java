@@ -8,9 +8,10 @@ package us.trycatch.chess_allocator_solver.chess;
 
 import java.math.BigInteger;
 import java.util.Arrays;
-import us.trycatch.chess_allocator_solver.chess.marker.CellMarkFactory;
-import us.trycatch.chess_allocator_solver.chess.marker.Marker;
 import static us.trycatch.chess_allocator_solver.chess.ChessConstants.*;
+import us.trycatch.chess_allocator_solver.chess.marker.CellMarkFactory;
+import us.trycatch.chess_allocator_solver.chess.marker.IllegalMark;
+import us.trycatch.chess_allocator_solver.chess.marker.Marker;
 /**
  *
  * @author albertodelso
@@ -102,15 +103,17 @@ public class AbstractChessGame {
         return out;
     }
     
-    public ChessGameConfiguration putPiece(Piece piece,int boardPosition){
+    public ChessGameConfiguration putPiece(Piece piece,int boardPosition)
+    throws IllegalMark{
         ChessGameConfiguration out;
     
         Cell[] newCellBoard = Arrays.copyOf(this.currentBoard, this.currentBoard.length);
         
         //
-        Marker[] markers = CellMarkFactory.getMarks(piece);
+        CellMarkFactory cellMarkFactory = CellMarkFactory.getInstance();
+        Marker[] markers = cellMarkFactory.getMarks(piece);
         
-        for(Marker marker:markers){
+        for(Marker marker:markers){    
               marker.mark(boardPosition,newCellBoard,this.rows,this.columns);
         }
         

@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import us.trycatch.chess_allocator_solver.chess.marker.IllegalMark;
 
 /**
  *
@@ -90,10 +91,14 @@ public class SearchEngine {
                 
                 for(Cell boardCell: board){
                     if(boardCell == Cell.DEFAULT_EMPTY_CELL){
+                        try{
                             nextChessGameConfiguration = ses1.getCgconfig().putPiece(pieceToPut, cellPosition);
                             nextSearchStep = new SearchEngineStep(nextChessGameConfiguration,newAvailablePieces);
                             
                             this.pendingSearchSteps.add(nextSearchStep);
+                        }catch(IllegalMark exception){
+                            //Nothing to do.
+                        }
                     }
 
                      cellPosition++;

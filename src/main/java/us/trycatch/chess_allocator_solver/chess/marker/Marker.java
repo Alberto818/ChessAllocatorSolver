@@ -13,5 +13,6 @@ import us.trycatch.chess_allocator_solver.chess.Cell;
  * @author albertodelso
  */
 public interface Marker {
-    public void mark(int boardPosition,Cell[] cellBoard,int rows,int columns);
+    public void mark(int boardPosition,Cell[] cellBoard,int rows,int columns)
+    throws IllegalMark;
 }
