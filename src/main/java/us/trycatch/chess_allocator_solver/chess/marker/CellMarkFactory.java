@@ -39,6 +39,16 @@ public class CellMarkFactory {
      
      pieceMarksConfiguration.put(Piece.KING,kingMarkers);
      
+     //Bishop configuration
+     Marker upLeftDiagonalMarker = new UpLeftDiagonalMarker();
+     Marker upRightDiagonalMarker = new UpRightDiagonalMarker();
+     Marker downLeftDiagonalMarker = new DownLeftDiagonalMarker();
+     Marker downRightDiagonalMarker = new DownRightDiagonalMarker();
+     
+     Marker[] bishopMarkers =  {upLeftDiagonalMarker,upRightDiagonalMarker,
+                                downLeftDiagonalMarker,downRightDiagonalMarker};
+     
+     pieceMarksConfiguration.put(Piece.BISHOP,bishopMarkers);
      //Rook configuration.
      Marker rowMarker = new RowMarker();
      Marker columnMarker = new ColumnMarker();

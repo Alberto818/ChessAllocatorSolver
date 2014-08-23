@@ -12,7 +12,7 @@ import us.trycatch.chess_allocator_solver.chess.Cell;
  *
  * @author albertodelso
  */
-public class OneUpLeftMarker extends AbstractMarker{
+public class UpRightDiagonalMarker extends AbstractMarker{
 
     @Override
     public void mark(int boardPosition, Cell[] cellBoard, int rows, int columns) throws IllegalMark {
@@ -22,12 +22,19 @@ public class OneUpLeftMarker extends AbstractMarker{
         //Find the column.
         int boardPositionColumn = boardPosition % columns;
         
-        if (boardPositionColumn > 0 && boardPositionRow > 0){
-            //It's not the first column.
+        //Position to mark.
+        int positionToMark = boardPosition;
+        
+        for(int currentRow = boardPositionRow,currentColumn = boardPositionColumn; 
+                currentRow >=  0 && currentColumn < rows; 
+                currentRow--,currentColumn++){
             
-            int oneUpLeftCellPosition = boardPosition - (1 + columns);
-            mark(boardPosition,oneUpLeftCellPosition,cellBoard);
-        }
+                positionToMark = columns * currentRow + currentColumn;
+                mark(boardPosition, positionToMark,cellBoard);                
+               
+            }
+        
+      
     }
     
 }
