@@ -65,6 +65,17 @@ public class CellMarkFactory {
                               downLeftDiagonalMarker,downRightDiagonalMarker};
              
      pieceMarksConfiguration.put(Piece.QUEEN, queenMarkers);
+     
+     //Knight configuration
+     Marker upKnightMarker = new UpKnightMarker();
+     Marker downKnightMarker = new DownKnightMarker();
+     Marker leftKnightMarker = new LeftKnightMarker();
+     Marker rightKnightMarker = new RightKnightMarker();
+     
+     Marker[] knightMarkers = {upKnightMarker,downKnightMarker,
+                               leftKnightMarker,rightKnightMarker};
+     
+     pieceMarksConfiguration.put(Piece.KNIGHT,knightMarkers);
     }
     
     public static CellMarkFactory getInstance(){
