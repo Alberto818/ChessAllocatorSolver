@@ -9,6 +9,7 @@ package us.trycatch.chess_allocator_solver;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 import us.trycatch.chess_allocator_solver.chess.Cell;
 import us.trycatch.chess_allocator_solver.chess.ChessConstants;
 import us.trycatch.chess_allocator_solver.chess.ChessGameConfiguration;
@@ -22,6 +23,8 @@ import us.trycatch.chess_allocator_solver.chess.SearchEngine;
  */
 public class ChessAllocatorSolver {
     
+    ResourceBundle messages = ResourceBundle.getBundle("messages");
+    
     public static void main(String[] args){
         ChessAllocatorSolver application = new ChessAllocatorSolver();
         application.run(args);
@@ -34,7 +37,7 @@ public class ChessAllocatorSolver {
         String errorMsg;
         
         if (args.length != 3){
-            errorMsg = "Invalid number of parameters. Expected rows colums piecesString";
+            errorMsg = messages.getString("numParametersInvalid");
             System.out.println(errorMsg);
         }else{
             
@@ -63,15 +66,15 @@ public class ChessAllocatorSolver {
                 
                 printResults(results);
                 }catch(IllegalArgumentException invalidPieceCharException){
-                   errorMsg = "Invalid char in the pieces string. Check it and try again.";
+                   errorMsg = messages.getString("pieceCharInvalid");
                    System.out.println(errorMsg);
                 }
                 }catch(NumberFormatException columnsNumberFormatException){
-                errorMsg = "Invalid columns number";
+                errorMsg = messages.getString("columnsNumberInvalid");
                 System.out.println(errorMsg);
                 }
             }catch(NumberFormatException rowNumberFormatException){
-            errorMsg = "Invalid rows number";
+            errorMsg = messages.getString("rowsNumberInvalid");
             System.out.println(errorMsg);
             }
         }
@@ -81,10 +84,10 @@ public class ChessAllocatorSolver {
         String errorMsg;
         
         if (results.length == 0){
-            errorMsg = "No solutions found";
+            errorMsg = messages.getString("noSolutionsFound");
             System.out.println(errorMsg);
         }else{
-            String msg = results.length + " solutions found\n";
+            String msg = results.length + messages.getString("solutionsFound");
             System.out.println(msg);
             
             for(int i = 0; i < results.length; i++){
@@ -94,11 +97,11 @@ public class ChessAllocatorSolver {
                 BigInteger biRepresentationNumber = ChessTools.calculateRepresentationNumber(cells);                
                 String strRepresentationString = ChessTools.convertToRepresentationString(biRepresentationNumber, alfabet.toCharArray());
                                 
-                msg = "Solution: " + strRepresentationString;
+                msg = messages.getString("solution") +" ("+i+"): " + strRepresentationString;
                 System.out.println(msg);
             }
             
-            msg = "To show a text representation of the chess configuration use ChessAllocatorViewer";
+            msg = messages.getString("viewerAdvice");
             System.out.println("\n" + msg);
         }
     }

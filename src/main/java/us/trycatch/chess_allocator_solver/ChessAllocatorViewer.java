@@ -7,6 +7,7 @@
 package us.trycatch.chess_allocator_solver;
 
 import java.math.BigInteger;
+import java.util.ResourceBundle;
 import us.trycatch.chess_allocator_solver.chess.Cell;
 import us.trycatch.chess_allocator_solver.chess.ChessConstants;
 import us.trycatch.chess_allocator_solver.chess.ChessTools;
@@ -18,6 +19,9 @@ import us.trycatch.chess_allocator_solver.chess.PieceCell;
  * @author albertodelso
  */
 public class ChessAllocatorViewer {
+    
+     private ResourceBundle messages = ResourceBundle.getBundle("messages");
+     
      public static void main(String[] args){
         ChessAllocatorViewer application = new ChessAllocatorViewer();
         application.run(args);
@@ -30,7 +34,7 @@ public class ChessAllocatorViewer {
         String errorMsg;
         
         if (args.length != 3){
-            errorMsg = "Invalid number of parameters. Expected rows colums representationString";
+            errorMsg = messages.getString("invalidViewerParametersNumber");
             System.out.println(errorMsg);
         }else{
             
@@ -48,11 +52,11 @@ public class ChessAllocatorViewer {
                 
                 printChessBoard(rows, columns, boardCells);
                 }catch(NumberFormatException columnsNumberFormatException){
-                errorMsg = "Invalid columns number";
+                errorMsg = messages.getString("columnsNumberInvalid");
                 System.out.println(errorMsg);
                 }
             }catch(NumberFormatException rowNumberFormatException){
-            errorMsg = "Invalid rows number";
+            errorMsg = messages.getString("rowsNumberInvalid");
             System.out.println(errorMsg);
             }
         }
