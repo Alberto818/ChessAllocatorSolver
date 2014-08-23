@@ -37,23 +37,23 @@ public class ChessTools {
         
         switch(in){
             case KING:{
-                out = 'k';
+                out = ChessConstants.KING_PIECE_CHAR;
                 break;
             }
             case QUEEN:{
-                out = 'Q';
+                out = ChessConstants.QUEEN_PIECE_CHAR;
                 break;
             }
             case BISHOP:{
-                out = 'B';
+                out = ChessConstants.BISHOP_PIECE_CHAR;
                 break;
             }
             case KNIGHT:{
-                out= 'G';
+                out= ChessConstants.KNIGHT_PIECE_CHAR;
                 break;
             }
             case ROOK:{
-                out = 'R';
+                out = ChessConstants.ROOK_PIECE_CHAR;
                 break;
             }
             default:{
@@ -73,23 +73,23 @@ public class ChessTools {
         Piece out = null;
         
         switch(in){
-            case 'K':{
+            case ChessConstants.KING_PIECE_CHAR:{
                 out = Piece.KING;
                 break;
             }
-            case 'Q':{
+            case ChessConstants.QUEEN_PIECE_CHAR:{
                 out = Piece.QUEEN;
                 break;
             }
-            case 'B':{
+            case ChessConstants.BISHOP_PIECE_CHAR:{
                 out = Piece.BISHOP;
                 break;
             }
-            case 'G':{
+            case ChessConstants.KNIGHT_PIECE_CHAR:{
                 out= Piece.KNIGHT;
                 break;
             }
-            case 'R':{
+            case ChessConstants.ROOK_PIECE_CHAR:{
                 out = Piece.ROOK;
                 break;
             }

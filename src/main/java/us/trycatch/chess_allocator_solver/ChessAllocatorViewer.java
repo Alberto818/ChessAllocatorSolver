@@ -79,10 +79,10 @@ public class ChessAllocatorViewer {
                     Cell cell = boardCells[position];
                     
                     if (cell == Cell.DEFAULT_EMPTY_CELL){
-                        representationChar = '·';                    
+                        representationChar = ChessConstants.EMPTY_CELL_CHAR;                    
                     }else{
                         if (cell == Cell.DEFAULT_TAKEN_CELL){
-                            representationChar= '*';
+                            representationChar= ChessConstants.TAKEN_CELL_CHAR;
                         }else{
                             PieceCell pieceCell = (PieceCell) cell;
                             Piece piece = pieceCell.getPiece();

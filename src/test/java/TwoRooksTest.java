@@ -16,7 +16,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import us.trycatch.chess_allocator_solver.chess.Cell;
 import us.trycatch.chess_allocator_solver.chess.ChessConstants;
-import us.trycatch.chess_allocator_solver.chess.ChessGame;
 import us.trycatch.chess_allocator_solver.chess.ChessGameConfiguration;
 import us.trycatch.chess_allocator_solver.chess.ChessTools;
 import us.trycatch.chess_allocator_solver.chess.Piece;

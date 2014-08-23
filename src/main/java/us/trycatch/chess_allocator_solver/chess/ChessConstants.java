@@ -16,4 +16,18 @@ public interface ChessConstants {
      
     public static final String CHESS_BOARD_REPRESENTATION_ALFABET =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwyxz";
+    
+    public static final char KING_PIECE_CHAR = 'K';
+    
+    public static final char QUEEN_PIECE_CHAR = 'Q';
+    
+    public static final char BISHOP_PIECE_CHAR = 'B';
+    
+    public static final char KNIGHT_PIECE_CHAR = 'G';
+    
+    public static final char ROOK_PIECE_CHAR = 'R';
+    
+    public static final char EMPTY_CELL_CHAR = '·';
+    
+    public static final char TAKEN_CELL_CHAR = '*';
 }
