@@ -15,5 +15,5 @@ public interface ChessConstants {
     public static final int CELL_NUMBER_TO_CALCULATE_HASHCODE = 10;
      
     public static final String CHESS_BOARD_REPRESENTATION_ALFABET =
-            "ABCDEFGHIJKMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwyxz";
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwyxz";
 }

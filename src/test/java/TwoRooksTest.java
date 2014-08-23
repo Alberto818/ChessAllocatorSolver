@@ -153,7 +153,7 @@ public class TwoRooksTest {
         int columns = 3;
         
         String chessPiecesStr = "GGGGR";
-        String[] expectedRepresentationString = {"Jobd"};
+        String[] expectedRepresentationString = {"ShNHE"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }

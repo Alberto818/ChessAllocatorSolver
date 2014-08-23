@@ -8,6 +8,7 @@ package us.trycatch.chess_allocator_solver.chess;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -27,6 +28,42 @@ public class ChessTools {
             out.add(readPiece);
         }
             
+        return out;
+    }
+    public static char getCharFromPiece(Piece in)
+    throws IllegalArgumentException{
+    
+        char out;
+        
+        switch(in){
+            case KING:{
+                out = 'k';
+                break;
+            }
+            case QUEEN:{
+                out = 'Q';
+                break;
+            }
+            case BISHOP:{
+                out = 'B';
+                break;
+            }
+            case KNIGHT:{
+                out= 'G';
+                break;
+            }
+            case ROOK:{
+                out = 'R';
+                break;
+            }
+            default:{
+                String errorMsg = "Unknow piece type '"+in.name()+"'";
+                IllegalArgumentException exception;
+                exception = new IllegalArgumentException(errorMsg);
+                throw exception;
+            }
+        }
+        
         return out;
     }
     
@@ -67,25 +104,70 @@ public class ChessTools {
         return out;
     }
     
+    public static Cell[] calculateCells(BigInteger biNumber){
+    
+        List<? super Cell> cellList = new ArrayList<>();
+        
+        BigInteger leftNumber = biNumber;
+        Cell cell;
+        BigInteger base = BigInteger.valueOf(Piece.values().length + 2);
+        
+        while(leftNumber.intValue() > 0){
+        
+            BigInteger ordinal = leftNumber.mod(base);
+            leftNumber = leftNumber.divide(base);
+            
+            switch(ordinal.intValue()){
+                case 0:{
+                    cell = Cell.DEFAULT_EMPTY_CELL;
+                    break;
+                }
+                case 1:{
+                    cell= Cell.DEFAULT_TAKEN_CELL;                
+                    break;
+                }
+                default:{
+                Piece piece = Piece.getPieceFromOrdinal(ordinal.intValue() -2);
+                cell = new PieceCell(piece);
+                }
+            }
+            
+            cellList.add(cell);
+        }
+        
+        Cell[] out = cellList.toArray(new Cell[cellList.size()]);
+        return out;
+    }
     public static BigInteger calculateRepresentationNumber(Cell[] currentBoard){
         
         BigInteger out = BigInteger.ZERO;
         
         Cell actualCell;
-        int ibase = Piece.values().length;
+        int ibase = Piece.values().length + 2;
         BigInteger base = BigInteger.valueOf(ibase);
         
         for(int i=0; i < currentBoard.length;i++){
             actualCell = currentBoard[i];
             
-            if (actualCell instanceof PieceCell){
-                PieceCell pieceCell = (PieceCell) actualCell;
-                Piece piece = pieceCell.getPiece();
-                
-                //Calculate the new hashcode.
-                out = out.add(BigInteger.valueOf(piece.ordinal()).multiply(base.pow(i)));
-                
+            if (actualCell == Cell.DEFAULT_EMPTY_CELL){
+                //Do nothing. Empty cells value is zero.
+            }else{
+                if(actualCell == Cell.DEFAULT_TAKEN_CELL){
+                    
+                    //Calculate the new hashcode.
+                    out = out.add(base.pow(i));
+                }
+                else{
+                    if (actualCell instanceof PieceCell){
+                        PieceCell pieceCell = (PieceCell) actualCell;
+                        Piece piece = pieceCell.getPiece();
+
+                        //Calculate the new hashcode.
+                        out = out.add(BigInteger.valueOf(piece.ordinal() +2).multiply(base.pow(i)));
+                    }
+                }
             }
+            
         }
         
         return out;
@@ -103,10 +185,36 @@ public class ChessTools {
                 BigInteger alfabetIndex = leftNumber.mod(base);
                 leftNumber = leftNumber.divide(base);
                 
-                sb.insert(0,alfabet[alfabetIndex.intValue()]);
+                sb.append(alfabet[alfabetIndex.intValue()]);
         }
         
         out = sb.toString();
+        
+        return out;
+    }
+    
+    public static BigInteger convertoToRepresentationNumber(String representationString, char[] alfabet){
+        Hashtable<Character,Integer> conversionFunction = new Hashtable<>();
+        
+        BigInteger base = BigInteger.valueOf(alfabet.length);
+        BigInteger out = BigInteger.ZERO;        
+        
+        for(int i= 0; i < alfabet.length;i++){
+            conversionFunction.put(alfabet[i], i);
+        }
+        
+        char[] chars = representationString.toCharArray();
+        /**for(int i= chars.length -1; i >= 0 ;i-- ){
+            char representationStringCharacter = chars[i];
+            BigInteger number = BigInteger.valueOf(conversionFunction.get(representationStringCharacter));
+            out = out.add(number.multiply(base.pow(chars.length - i -1)));
+        }*/
+        
+         for(int i= 0; i < chars.length ;i++ ){
+            char representationStringCharacter = chars[i];
+            BigInteger number = BigInteger.valueOf(conversionFunction.get(representationStringCharacter));
+            out = out.add(number.multiply(base.pow(i)));
+        }
         
         return out;
     }
