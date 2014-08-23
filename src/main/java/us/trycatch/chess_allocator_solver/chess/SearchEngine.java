@@ -98,6 +98,7 @@ public class SearchEngine {
                             this.pendingSearchSteps.add(nextSearchStep);
                         }catch(IllegalMark exception){
                             //Nothing to do.
+                            int i = 0;
                         }
                     }
 

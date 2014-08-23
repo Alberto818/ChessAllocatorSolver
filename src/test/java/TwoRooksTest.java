@@ -79,7 +79,7 @@ public class TwoRooksTest {
         
         assertFalse(fault);
     }
-    @Test
+    //@Test
     public void twoRooks(){
     
         
@@ -88,6 +88,19 @@ public class TwoRooksTest {
         
         String chessPiecesStr = "RR";
         String[] expectedRepresentationString = {"o","Cj"};
+        
+        genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
+    }
+    
+    @Test
+    public void fourKings(){
+    
+        
+        int rows = 3;
+        int columns = 3;
+        
+        String chessPiecesStr = "KKKK";
+        String[] expectedRepresentationString = {"DNab"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }

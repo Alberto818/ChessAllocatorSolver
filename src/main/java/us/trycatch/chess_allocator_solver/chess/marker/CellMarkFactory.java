@@ -22,6 +22,23 @@ public class CellMarkFactory {
      
      pieceMarksConfiguration = new Hashtable<>();
      
+     //King configuration
+     Marker oneUpMarker = new OneUpMarker();
+     Marker oneDownMarker = new OneDownMarker();
+     Marker oneLeftMarker = new OneLeftMarker();
+     Marker oneRightMarker = new OneRightMarker();
+     Marker oneUpLeftMarker = new OneUpLeftMarker();
+     Marker oneUpRightMarker = new OneUpRightMarker();
+     Marker oneDownLeftMarker = new OneDownLeftMarker();
+     Marker oneDownRightMarker = new OneDownRightMarker();
+     
+     Marker[] kingMarkers = {oneUpMarker,oneDownMarker,
+                             oneLeftMarker,oneRightMarker,
+                             oneUpLeftMarker,oneUpRightMarker,
+                             oneDownLeftMarker,oneDownRightMarker};
+     
+     pieceMarksConfiguration.put(Piece.KING,kingMarkers);
+     
      //Rook configuration.
      Marker rowMarker = new RowMarker();
      Marker columnMarker = new ColumnMarker();
