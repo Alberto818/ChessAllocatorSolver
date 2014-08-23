@@ -43,10 +43,7 @@ public class AbstractChessGame {
         return out;
     }
     
-    public Cell[] getBoard(){
-        Cell[] out = this.currentBoard;
-        return out;
-    }
+    
     @Override
     public boolean equals(Object obj){
         
@@ -55,7 +52,7 @@ public class AbstractChessGame {
         if (obj instanceof AbstractChessGame){
             AbstractChessGame acg = (AbstractChessGame) obj;
             
-            if(this.currentBoard.length == acg.getBoard().length){
+            if(this.currentBoard.length == acg.getCurrentBoard().length){
                 
                 if (currentBoard.length <= CELL_NUMBER_TO_CALCULATE_HASHCODE){
                     out = this.hashCode() == acg.hashCode();
@@ -64,7 +61,7 @@ public class AbstractChessGame {
                     
                     for(int i= CELL_NUMBER_TO_CALCULATE_HASHCODE +1; out && (i < currentBoard.length);i++){
                         Cell thisCell = this.currentBoard[i];
-                        Cell otherCell = acg.getBoard()[i];
+                        Cell otherCell = acg.getCurrentBoard()[i];
                         
                         if (thisCell instanceof PieceCell){
                             if (otherCell instanceof PieceCell){
