@@ -56,6 +56,15 @@ public class CellMarkFactory {
      Marker[] rookMarkers = {rowMarker,columnMarker};
      
      pieceMarksConfiguration.put(Piece.ROOK, rookMarkers);
+     
+     //Queen configuration
+     //Rook markers + bishop markers = queen markers
+     
+     Marker[] queenMarkers = {rowMarker,columnMarker,
+                              upLeftDiagonalMarker,upRightDiagonalMarker,
+                              downLeftDiagonalMarker,downRightDiagonalMarker};
+             
+     pieceMarksConfiguration.put(Piece.QUEEN, queenMarkers);
     }
     
     public static CellMarkFactory getInstance(){

@@ -83,7 +83,7 @@ public class ChessTools {
                 Piece piece = pieceCell.getPiece();
                 
                 //Calculate the new hashcode.
-                out = out.add(BigInteger.valueOf(piece.ordinal()).add(base.pow(i)));
+                out = out.add(BigInteger.valueOf(piece.ordinal()).multiply(base.pow(i)));
                 
             }
         }

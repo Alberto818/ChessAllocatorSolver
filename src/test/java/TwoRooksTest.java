@@ -105,7 +105,7 @@ public class TwoRooksTest {
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
-    @Test
+    //@Test
     public void twoBishops(){
     
         
@@ -117,6 +117,7 @@ public class TwoRooksTest {
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
+    
     
    // @Test
     public void threeRooks(){
@@ -131,6 +132,18 @@ public class TwoRooksTest {
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
+    @Test
+    public void twoQueens(){
+    
+        
+        int rows = 2;
+        int columns = 3;
+        
+        String chessPiecesStr = "QQ";
+        String[] expectedRepresentationString = {"BNb","DA"};
+        
+        genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
+    }
     @After
     public void tearDown() {
     }
