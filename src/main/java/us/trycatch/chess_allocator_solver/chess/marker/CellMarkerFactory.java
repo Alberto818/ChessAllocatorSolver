@@ -1,24 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess.marker;
 
 import java.util.Hashtable;
 import us.trycatch.chess_allocator_solver.chess.Piece;
 
 /**
- *
- * @author albertodelso
+ *CellMarkerFactory get the piece markes of one piece.
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
-public class CellMarkFactory {
+public class CellMarkerFactory {
 
-    private static CellMarkFactory singlenton = null;
+    private static CellMarkerFactory singlenton = null;
     private Hashtable<Piece,Marker[]> pieceMarksConfiguration;
     
-    private CellMarkFactory(){
+    private CellMarkerFactory(){
      
      pieceMarksConfiguration = new Hashtable<>();
      
@@ -78,14 +74,26 @@ public class CellMarkFactory {
      pieceMarksConfiguration.put(Piece.KNIGHT,knightMarkers);
     }
     
-    public static CellMarkFactory getInstance(){
+    /**
+     * Returns the instance of CellMarkerFactory
+     * 
+     * @return this only instance.
+     */
+    public static CellMarkerFactory getInstance(){
         
         if (singlenton == null){
-            singlenton = new CellMarkFactory();
+            singlenton = new CellMarkerFactory();
         }
         
         return singlenton;
     }
+    
+    /**
+     * Return the associted markers of the piece.
+     * 
+     * @param piece The input piece
+     * @return The asocciated piece marker piece
+     */
     public Marker[] getMarks(Piece piece){
         
         Marker[] out = pieceMarksConfiguration.get(piece);

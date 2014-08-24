@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess;
 
 /**
- *
- * @author albertodelso
+ *This class represents a empty cell. In general it is not necessary create new
+ *instances, you must used Cell.DEFAULT_EMPTY_CELL
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
 public class EmptyCell implements Cell{
     

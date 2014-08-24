@@ -1,19 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess.marker;
 
 import us.trycatch.chess_allocator_solver.chess.Cell;
 
 /**
- *
- * @author albertodelso
+ *RightKnightMarker marks the positions when the knight is moved to the right.
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
 public class RightKnightMarker extends AbstractMarker{
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void mark(int boardPosition, Cell[] cellBoard, int rows, int columns) throws IllegalMark {
         //Find the row.

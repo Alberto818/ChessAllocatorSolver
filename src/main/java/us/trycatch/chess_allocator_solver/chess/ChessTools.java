@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess;
 
 import java.math.BigInteger;
@@ -12,11 +6,21 @@ import java.util.Hashtable;
 import java.util.List;
 
 /**
- *
- * @author albertodelso
+ *This class has utility static methods used across the application
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
 public class ChessTools {
 
+    /**
+     * This method get a piece list from its representation string. The allowed
+     * piece chars are defined in the ChessConstants interface.
+     * 
+     * @param in the input representation string
+     * @return the piece list
+     * @throws IllegalArgumentException If unknown piece char is found
+     */
     
     public static List<Piece> getPiecesFromString(String in)
     throws IllegalArgumentException{
@@ -30,6 +34,15 @@ public class ChessTools {
             
         return out;
     }
+    
+    /**
+     * Returns the piece representation char.
+     * 
+     * @param in the input char
+     * @return the asociated piece representation char
+     * @throws IllegalArgumentException If the piece is unknown or it has not
+     * representation char
+     */
     public static char getCharFromPiece(Piece in)
     throws IllegalArgumentException{
     
@@ -67,6 +80,13 @@ public class ChessTools {
         return out;
     }
     
+    /**
+     * Return the piece instance from its representation char
+     * 
+     * @param in the representation char
+     * @return The piece associated with the representation char
+     * @throws IllegalArgumentException If it is not found the associated piece
+     */
     public static Piece getPieceFromChar(char in)
     throws IllegalArgumentException{
     
@@ -104,6 +124,13 @@ public class ChessTools {
         return out;
     }
     
+    /**
+     * From the representation number of the chess game configuration it gets
+     * the cell list associated
+     * 
+     * @param biNumber the representation number
+     * @return the associated cell list
+     */
     public static Cell[] calculateCells(BigInteger biNumber){
     
         List<? super Cell> cellList = new ArrayList<>();
@@ -138,6 +165,13 @@ public class ChessTools {
         Cell[] out = cellList.toArray(new Cell[cellList.size()]);
         return out;
     }
+    
+    /**
+     * Calculate the representation number from the cell list
+     * 
+     * @param currentBoard the cell list
+     * @return the representation number
+     */
     public static BigInteger calculateRepresentationNumber(Cell[] currentBoard){
         
         BigInteger out = BigInteger.ZERO;
@@ -173,6 +207,14 @@ public class ChessTools {
         return out;
     }
     
+    /**
+     * Convert a representation number to a representation string. It is used
+     * to show the chess game configuration in a compact string.
+     * 
+     * @param irepresentation the input representation number
+     * @param alfabet the alfabet used to do the conversion to string
+     * @return the representation string
+     */
     public static String convertToRepresentationString(BigInteger irepresentation,char[] alfabet){
         
         String out = null;
@@ -193,6 +235,13 @@ public class ChessTools {
         return out;
     }
     
+    /**
+     * Calculate the representation number from the representation string.
+     * 
+     * @param representationString the input representation string
+     * @param alfabet The alfabet used to do the coversion
+     * @return The representation number
+     */
     public static BigInteger convertoToRepresentationNumber(String representationString, char[] alfabet){
         Hashtable<Character,Integer> conversionFunction = new Hashtable<>();
         
@@ -204,13 +253,8 @@ public class ChessTools {
         }
         
         char[] chars = representationString.toCharArray();
-        /**for(int i= chars.length -1; i >= 0 ;i-- ){
-            char representationStringCharacter = chars[i];
-            BigInteger number = BigInteger.valueOf(conversionFunction.get(representationStringCharacter));
-            out = out.add(number.multiply(base.pow(chars.length - i -1)));
-        }*/
-        
-         for(int i= 0; i < chars.length ;i++ ){
+               
+        for(int i= 0; i < chars.length ;i++ ){
             char representationStringCharacter = chars[i];
             BigInteger number = BigInteger.valueOf(conversionFunction.get(representationStringCharacter));
             out = out.add(number.multiply(base.pow(i)));

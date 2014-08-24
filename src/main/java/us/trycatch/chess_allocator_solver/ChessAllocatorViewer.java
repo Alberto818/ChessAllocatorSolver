@@ -15,17 +15,32 @@ import us.trycatch.chess_allocator_solver.chess.Piece;
 import us.trycatch.chess_allocator_solver.chess.PieceCell;
 
 /**
- *
+ * This is the application to see the chess board representation string as
+ * text representation.
+ * 
  * @author albertodelso
+ * @version 1.0
  */
 public class ChessAllocatorViewer {
     
      private ResourceBundle messages = ResourceBundle.getBundle("messages");
      
+     /**
+      * This is the main method of the application. It expects three arguments:
+      * rows number,columns number, and string representation (comes from
+      * ChessAllocatorSolver).
+      * 
+      * @param args The command line parameters.
+      */
      public static void main(String[] args){
         ChessAllocatorViewer application = new ChessAllocatorViewer();
         application.run(args);
     }
+     /**
+      * The same behaivour as main method.
+      * 
+      * @param args It expectes thre arguments (int,int,String)
+      */
     public void run(String[] args){
     
         int rows = 0;
@@ -62,6 +77,13 @@ public class ChessAllocatorViewer {
         }
     }
     
+    /**
+     * Print the chess board in the System.out.
+     * 
+     * @param rows number of rows
+     * @param columns number of columns
+     * @param boardCells chess boards cells.
+     */
     private void printChessBoard(int rows,int columns, Cell[] boardCells){
         String errorMsg;
         

@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,11 +9,18 @@ import java.util.Set;
 import us.trycatch.chess_allocator_solver.chess.marker.IllegalMark;
 
 /**
- *
- * @author albertodelso
+ *Search engine has the logic to do a search of the chess allocator solver
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
 public class SearchEngine {
 
+    /**
+     * Each new chess game configuration with the pending pieces to allocate 
+     * defines a SearchEngineStep. It is used by the search engine.
+     * 
+     */
     private class SearchEngineStep{
     
         
@@ -51,14 +51,27 @@ public class SearchEngine {
         
     }
     
+    //The created search engine steps pending to put pieces
     private Queue<SearchEngineStep> pendingSearchSteps;
+    
+    //The solutions found
     private Set<ChessGameConfiguration> sucessfullChessGameConfigurations;
     
+    /**
+     * SearchEngine constructor
+     */
     public SearchEngine(){
         pendingSearchSteps = new LinkedList<>();
         sucessfullChessGameConfigurations = new HashSet<>();
     }
     
+    /**
+     * This method do the search
+     * 
+     * @param cgc The initial chess game configuration.
+     * @param availablePieces The pieces to put in the board
+     * @return The found solutions
+     */
     public ChessGameConfiguration[] search(ChessGameConfiguration cgc,List<? extends Piece> availablePieces){
         
        SearchEngineStep ses = new SearchEngineStep(cgc, availablePieces);

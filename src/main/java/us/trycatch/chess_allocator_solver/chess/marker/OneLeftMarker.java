@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver.chess.marker;
 
 import us.trycatch.chess_allocator_solver.chess.Cell;
 
 /**
- *
- * @author albertodelso
+ *OneLeftMarker marks the cell in the left column.If the position is out
+ *of the board it does nothing.
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0
  */
 public class OneLeftMarker extends AbstractMarker{
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void mark(int boardPosition, Cell[] cellBoard, int rows, int columns) throws IllegalMark {
         //Find the column.

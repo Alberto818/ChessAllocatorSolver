@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package us.trycatch.chess_allocator_solver;
 
 import java.math.BigInteger;
@@ -18,17 +12,46 @@ import us.trycatch.chess_allocator_solver.chess.Piece;
 import us.trycatch.chess_allocator_solver.chess.SearchEngine;
 
 /**
- *
- * @author albertodelso
+ * This is the main class of the application. It takes the row number, the 
+ * column number and a String with the chess pieces that it is pretended to
+ * allocate in the chess board. If no solution is found the application will 
+ * show a error message in other case all found solutions are shown as
+ * its string representation. The string representation can be used in the
+ * ChessAllocatorViewer to get a text representation of the solution.
+ * 
+ * @author Alberto Delso Encabo
+ * @version 1.0 
  */
 public class ChessAllocatorSolver {
     
-    ResourceBundle messages = ResourceBundle.getBundle("messages");
+    //i18n
+    private ResourceBundle messages = ResourceBundle.getBundle("messages");
     
+    /**
+     * This is main method. The application start here.
+     * 
+     * @param args Three parameters are expected. Rows number (number) +
+     *  columns number + Pieces string representation.  
+     * <P>
+     * The pieces string represention has one char for each piece. 
+     * <P>
+     * For example:
+     * <BR> 'K' -> One rook
+     * <BR> 'GG' -> Two knight
+     * <BR> 'KQ'-> One King and One Queen
+     * <BR> The pieces char order do not matter.
+     * 
+     * 
+     */
     public static void main(String[] args){
         ChessAllocatorSolver application = new ChessAllocatorSolver();
         application.run(args);
     }
+    
+    /**
+     * The same behaivour as main method.
+     * @param args 
+     */
     public void run(String[] args){
     
         int rows = 0;
@@ -80,6 +103,10 @@ public class ChessAllocatorSolver {
         }
     }
     
+    /**
+     * Prints in the System.out the solution list.
+     * @param results solution list
+     */
     private void printResults(ChessGameConfiguration[] results){
         String errorMsg;
         
