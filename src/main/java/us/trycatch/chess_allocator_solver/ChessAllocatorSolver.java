@@ -114,7 +114,7 @@ public class ChessAllocatorSolver {
             errorMsg = messages.getString("noSolutionsFound");
             System.out.println(errorMsg);
         }else{
-            String msg = results.length + messages.getString("solutionsFound");
+            String msg = results.length + " "+ messages.getString("solutionsFound");
             System.out.println(msg);
             
             for(int i = 0; i < results.length; i++){

@@ -1,11 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -22,13 +15,14 @@ import us.trycatch.chess_allocator_solver.chess.Piece;
 import us.trycatch.chess_allocator_solver.chess.SearchEngine;
 
 /**
- *
- * @author albertodelso
+ *Test for the application.
+ * 
+ * @author Alberto Delso Encabo
  */
-public class TwoRooksTest {
+public class ChessAllocatorSolverTest {
     SearchEngine searchEngine;
     
-    public TwoRooksTest() {
+    public ChessAllocatorSolverTest() {
     }
     
     @BeforeClass
@@ -78,7 +72,7 @@ public class TwoRooksTest {
         
         assertFalse(fault);
     }
-    //@Test
+    @Test
     public void twoRooks(){
     
         
@@ -86,12 +80,12 @@ public class TwoRooksTest {
         int columns = 2;
         
         String chessPiecesStr = "RR";
-        String[] expectedRepresentationString = {"o","Cj"};
+        String[] expectedRepresentationString = {"EN","oo"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
-    //@Test
+    @Test
     public void fourKings(){
     
         
@@ -99,12 +93,12 @@ public class TwoRooksTest {
         int columns = 3;
         
         String chessPiecesStr = "KKKK";
-        String[] expectedRepresentationString = {"DNab"};
+        String[] expectedRepresentationString = {"ZnilB"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
-    //@Test
+    @Test
     public void twoBishops(){
     
         
@@ -112,13 +106,13 @@ public class TwoRooksTest {
         int columns = 2;
         
         String chessPiecesStr = "BB";
-        String[] expectedRepresentationString = {"DE","K","Cj","f"};
+        String[] expectedRepresentationString = {"eK","II","Qe","ub"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
     
-   // @Test
+    @Test
     public void threeRooks(){
     
         
@@ -126,12 +120,12 @@ public class TwoRooksTest {
         int columns = 3;
         
         String chessPiecesStr = "RRR";
-        String[] expectedRepresentationString = {"391263","81263","78287","16287","18767","390767"};
+        String[] expectedRepresentationString = {"YSFAB","wjrsE","YJlZB","MZvsE","ArGZB","gvfAB"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
     
-    //@Test
+    @Test
     public void twoQueens(){
     
         
@@ -139,7 +133,7 @@ public class TwoRooksTest {
         int columns = 3;
         
         String chessPiecesStr = "QQ";
-        String[] expectedRepresentationString = {"BNb","DA"};
+        String[] expectedRepresentationString = {"cjT","IcH"};
         
         genericTest(rows, columns, chessPiecesStr, expectedRepresentationString);        
     }
